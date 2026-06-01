@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Detalhes do Produto{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<div id="content">
+    <div class="container">
+
+        <input type="hidden" value="{{ produto.id }}" name="id">
+
+        <div class="row mb-3">
+            <label for="Produto" class="col-md-2 col-form-label">
+                Produto
+            </label>
+
+            <div class="col-md-6">
+                <input
+                    type="text"
+                    class="form-control"
+                    value="{{ produto.Produto }}"
+                    name="Produto"
+                    disabled
+                >
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-2">
+
+                <input
+                    type="checkbox"
+                    name="destaque"
+                    {% if produto.destaque %}checked{% endif %}
+                    disabled
+                >
+
+                <label for="destaque">Destaque</label>
+
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-2">
+
+                <input
+                    type="checkbox"
+                    name="promocao"
+                    {% if produto.promocao %}checked{% endif %}
+                    disabled
+                >
+
+                <label for="promocao">Promoção</label>
+
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="msgPromocao" class="col-md-2 col-form-label">
+                Msg Promoção
+            </label>
+
+            <div class="col-md-6">
+                <input
+                    type="text"
+                    class="form-control"
+                    value="{{ produto.msgPromocao }}"
+                    name="msgPromocao"
+                    disabled
+                >
+            </div>
+        </div>
+
+        <div class="row">
+            <a href="{% url 'produto' %}"
+               class="btn bg-secondary col-md-2 mt-3">
+
+                <i class="fa fa-rotate-left"></i> Retornar
+            </a>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/home.js' %}"></script>
+{% endblock %}
