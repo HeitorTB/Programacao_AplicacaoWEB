@@ -1,53 +1,119 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Início{% endblock %}
+
+{% block title %}Editar Produto{% endblock %}
+
 {% block styles %}
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
 {% endblock %}
+
 {% block content %}
 <div id="content">
     <div class="container">
-<form method="POST" action= "/produto/edit" >
-{% csrf_token %}
-<div class="row">
-<input type="hidden" value="{{produto.id}}" name="id">
-<h5 for="Produto" class="col-md-2">Produto</h5>
-<input value="{{produto.Produto}}" name="Produto">
-</div>
-<div class="row">
-<div class="col-md-2">
-{% if produto.destaque %}
-<input type="checkbox" checked name="destaque" >
-{% else %}
-<input type="checkbox" name="destaque" >
-{% endif %}
-<label for="destaque">Destaque</label>
-</div>
-</div>
-<div class="row">
-<div class="col-md-2">
-{% if produto.promocao %}
-<input type="checkbox" checked name="promocao" >
-{% else %}
-<input type="checkbox" name="promocao" >
-{% endif %}
-<label for="promocao">Promoção</label>
-</div>
-</div>
-<div class="row">
-<label for="msgPromocao" class="col-md-2">Msg Promoção</label>
-<input value="{{produto.msgPromocao}}" name="msgPromocao">
-</div>
-<div class="row">
-<button type="submit" class="btn btn-danger col-md-2 mt-3 mr-2"><i class="fa
-fa-check"></i> Salvar</button>
-<a href="{% url 'produto' %}" class="btn bg-secondary col-md-2 mt-3"><i class="fa
-fa-rotate-left"></i> Retornar</a>
-</div>
-</form>
-</div>
+        <form method="POST" enctype="multipart/form-data" action="/produto/edit">
+            {% csrf_token %}
+            <input type="hidden" value="{{ produto.id }}" name="id">
+
+            <div class="form-group row mb-3">
+                <label for="Produto" class="col-md-2 col-form-label font-weight-bold">Produto</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="Produto" value="{{ produto.Produto }}" name="Produto">
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <div class="col-md-6 offset-md-2">
+                    <div class="form-check">
+                        {% if produto.destaque %}
+                            <input type="checkbox" class="form-check-input" id="destaque" checked name="destaque">
+                        {% else %}
+                            <input type="checkbox" class="form-check-input" id="destaque" name="destaque">
+                        {% endif %}
+                        <label class="form-check-label" for="destaque">Destaque</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row mb-3">
+                <div class="col-md-6 offset-md-2">
+                    <div class="form-check">
+                        {% if produto.promocao %}
+                            <input type="checkbox" class="form-check-input" id="promocao" checked name="promocao">
+                        {% else %}
+                            <input type="checkbox" class="form-check-input" id="promocao" name="promocao">
+                        {% endif %}
+                        <label class="form-check-label" for="promocao">Promoção</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row mb-3">
+                <label for="msgPromocao" class="col-md-2 col-form-label font-weight-bold">Msg Promoção</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="msgPromocao" value="{{ produto.msgPromocao }}" name="msgPromocao">
+                </div>
+            </div>
+
+            <div class="form-group row mb-3">
+                <label for="CategoriaFk" class="col-md-2 col-form-label font-weight-bold">Categorias</label>
+                <div class="col-md-6">
+                    <select class="form-control" name="CategoriaFk" id="CategoriaFk">
+                        <option value="-1">-----</option>
+                        {% for cate in categorias %}
+                            {% if produto.categoria_id == cate.id %}
+                                <option value="{{ cate.id }}" selected>{{ cate.Categoria }}</option>
+                            {% else %}
+                                <option value="{{ cate.id }}">{{ cate.Categoria }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row mb-4">
+                <label for="FabricanteFk" class="col-md-2 col-form-label font-weight-bold">Fabricantes</label>
+                <div class="col-md-6">
+                    <select class="form-control" name="FabricanteFk" id="FabricanteFk">
+                        <option value="-1">-----</option>
+                        {% for fabri in fabricantes %}
+                            {% if produto.fabricante_id == fabri.id %}
+                                <option value="{{ fabri.id }}" selected>{{ fabri.Fabricante }}</option>
+                            {% else %}
+                                <option value="{{ fabri.id }}">{{ fabri.Fabricante }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row mb-4">
+                <label for="image" class="col-md-2 col-form-label font-weight-bold">Imagem</label>
+                <div class="col-md-6">
+                    {% if produto.image %}
+                        <div class="mb-2">
+                            <small class="text-muted d-block">Imagem atual:</small>
+                            <img class="img-thumbnail" width="150px" src="/media/{{ produto.image }}" alt="{{ produto.Produto }}">
+                        </div>
+                    {% endif %}
+                    <input type="file" class="form-control-file" id="image" name="image">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 offset-md-2 d-flex gap-2">
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fa fa-check"></i> Salvar
+                    </button>
+                    <a href="{% url 'produto' %}" class="btn btn-secondary text-white">
+                        <i class="fa fa-rotate-left"></i> Retornar
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
 {% endblock %}
+
 {% block scripts %}
 <script src="{% static 'js/home.js' %}"></script>
 {% endblock %}

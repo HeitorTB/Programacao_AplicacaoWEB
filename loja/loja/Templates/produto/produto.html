@@ -1,67 +1,45 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Início{% endblock %}
+{% block title %}Produtos{% endblock %}
 
 {% block styles %}
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
 {% endblock %}
 
 {% block content %}
-
 <div id="content">
-
     <div class="container">
-
-        <div class="alert alert-info">
-
-            Produtos encontrados [{{ produtos|length }}]
-
+        <div class="alert alert-info d-flex justify-content-between align-items-center">
+            <div>
+                Produtos encontrados [<strong>{{ produtos | length }}</strong>]
+            </div>
+            <a href="{% url 'create_produto' %}" class="btn btn-primary">
+                <i class="fa fa-plus"></i> Novo Produto
+            </a>
         </div>
 
         {% for prod in produtos %}
-
-        <div class="row mb-3">
-
-            <h5 class="col-md-3">
-                {{ prod.Produto }}
-            </h5>
-
-            <!-- VER -->
-            <a href="{% url 'details_produto' prod.id %}"
-               class="btn btn-primary mb-2 mr-2">
-
-                <i class="fa fa-search"></i>
-                Ver
-
-            </a>
-
-            <!-- EDITAR -->
-            <a href="{% url 'edit_produto' prod.id %}"
-               class="btn bg-secondary mb-2 mr-2">
-
-                <i class="fa fa-edit"></i>
-                Editar
-
-            </a>
-
-            <!-- APAGAR -->
-            <a href="{% url 'produto' prod.id %}"
-               class="btn btn-warning mb-2">
-
-                <i class="fa fa-trash"></i>
-                Apagar
-
-            </a>
-
-        </div>
-
+            <div class="row align-items-center mb-3 border-bottom pb-2">
+                <h5 class="col-md-3 mb-0">{{ prod.Produto }}</h5>
+                
+                <div class="col-md-9">
+                    <a href="{% url 'details_produto' prod.id %}" class="btn btn-primary mb-2 mr-2">
+                        <i class="fa fa-search"></i> Ver
+                    </a>
+                    <a href="{% url 'edit_produto' prod.id %}" class="btn bg-secondary mb-2 mr-2 text-white">
+                        <i class="fa fa-edit"></i> Editar
+                    </a>
+                    <a href="{% url 'delete_produto' prod.id %}" class="btn btn-warning mb-2">
+                        <i class="fa fa-trash"></i> Apagar
+                    </a>
+                </div>
+            </div>
+        {% empty %}
+            <div class="text-muted">Nenhum produto cadastrado.</div>
         {% endfor %}
-
     </div>
-
 </div>
-
 {% endblock %}
 
 {% block scripts %}

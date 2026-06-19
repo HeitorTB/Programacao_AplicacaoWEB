@@ -1,2 +1,2 @@
-from .ProdutoView import *
 from .HomeView import *
+from .ProdutoView import *

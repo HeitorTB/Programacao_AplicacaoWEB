@@ -1,117 +1,57 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
     <meta charset="utf-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap -->
-    <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <!-- CSS Global -->
-    <link rel="stylesheet"
-          href="{% static 'css/global.css' %}">
-
-    {% block styles %}
-    {% endblock %}
-
-    <title>
-        Loja - {% block title %}{% endblock %}
-    </title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    
+    {% block styles %}{% endblock %}
+    <title>Loja - {% block title %}{% endblock %}</title>
 </head>
-
-<body>
-
+<body class="d-flex flex-column min-vh-100">
     <header>
-
-        <nav class="navbar justify-content-end navbar-expand-lg">
-
+        <nav class="navbar justify-content-end navbar-expand-lg navbar-light bg-light border-bottom">
             <ul class="nav">
-
                 <li class="nav-item">
-                    <a class="nav-link" href="/">
-                        <i class="fa fa-home"></i>
-                        Home
-                    </a>
+                    <a class="nav-link" href="/"><i class="fa fa-home"></i> Home</a>
                 </li>
-
                 <li class="nav-item">
-                    <a class="nav-link" href="/categoria">
-                        <i class="fa fa-book"></i>
-                        Categoria
-                    </a>
+                    <a class="nav-link" href="/categoria"><i class="fa fa-book"></i> Categoria</a>
                 </li>
-
                 <li class="nav-item">
-                    <a class="nav-link" href="/fabricante">
-                        <i class="fa fa-book"></i>
-                        Fabricante
-                    </a>
+                    <a class="nav-link" href="/fabricante"><i class="fa fa-book"></i> Fabricante</a>
                 </li>
-
                 <li class="nav-item">
-                    <a class="nav-link" href="/produto">
-                        <i class="fa fa-book"></i>
-                        Produto
-                    </a>
+                    <a class="nav-link" href="/produto"><i class="fa fa-book"></i> Produto</a>
                 </li>
-
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fa fa-sign-in"></i>
-                        Entrar
-                    </a>
+                    <a class="nav-link" href="#"><i class="fa fa-sign-in"></i> Entrar</a>
                 </li>
-
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fa fa-edit"></i>
-                        Registrar
-                    </a>
+                    <a class="nav-link" href="#"><i class="fa fa-edit"></i> Registrar</a>
                 </li>
-
             </ul>
-
         </nav>
-
     </header>
 
-    {% block content %}
-    {% endblock %}
+    <main class="container my-4 flex-grow-1">
+        {% block content %}{% endblock %}
+    </main>
 
-    <footer class="page-footer font-small blue">
-
+    <footer class="page-footer font-small blue mt-auto border-top bg-light">
         <div class="footer-copyright text-center py-3">
-            ©2020 Copyright:
-            <a href="https://www.casadocodigo.com.br/">
-                Casadocodigo.com.br
-            </a>
+            ©2020 Copyright: <a href="https://www.casadocodigo.com.br/">Casadocodigo.com.br</a>
         </div>
-
     </footer>
 
-    <!-- JS -->
-
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
-    {% block scripts %}
-    {% endblock %}
-
+    
+    {% block scripts %}{% endblock %}
 </body>
-
 </html>
