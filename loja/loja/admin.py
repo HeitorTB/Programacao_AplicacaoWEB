@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import * #imporata nossos models
+from .models import * 
 
 class FabricanteAdmin(admin.ModelAdmin):
     date_hierarchy = 'criado_em'
@@ -14,3 +14,4 @@ class ProdutoAdmin(admin.ModelAdmin):
 admin.site.register(Fabricante,FabricanteAdmin)
 admin.site.register(Categoria)
 admin.site.register(Produto, ProdutoAdmin)
+admin.site.register(Usuario)
