@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Editar Fabricante{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<div id="content">
+    <div class="container">
+        <form method="POST" action="{% url 'edit_fabricante' fabricante.id %}">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    {% for f in form %}
+                    <div class="form-group">
+                        {{ f.label }}
+                        {{ f }}
+                        {% for error in f.errors %}
+                        <div class="invalid-feedback" style="display: initial;">
+                            {{ error }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+                    
+                    <div class="row mt-3">
+                        <button type="submit" class="btn btn-danger col-md-4 mr-2">
+                            <i class="fa fa-check"></i> Salvar
+                        </button>
+                        <a href="{% url 'fabricante' %}" class="btn bg-secondary col-md-4">
+                            <i class="fa fa-rotate-left"></i> Retornar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/home.js' %}"></script>
+{% endblock %}
