@@ -12,8 +12,7 @@ class UserUsuarioForm(ModelForm):
         widgets = {
             'user': forms.HiddenInput(),
             'perfil': forms.Select(attrs={'class': "form-control"}),
-            'aniversario': forms.DateInput(attrs={'class':
-            "form-control", "type": "date"})}
+            'aniversario': forms.DateInput(attrs={'class':"form-control", "type": "date"})}
 class UserForm(ModelForm):
     class Meta:
         model = User
